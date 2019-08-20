@@ -21,7 +21,19 @@
 // stepper([3, 4, 1, 0, 10]);           // => true, because we can step through elements 3 -> 4 -> 10
 // stepper([2, 3, 1, 1, 0, 4, 7, 8])    // => false, there is no way to step to the end
 function stepper(nums) {
+    let table = new Array(nums.length).fill(false);
+    table[0] = true;
 
+    for (let i = 0; i < table.length; i++){
+        if (table[i] === true){
+            let maxRange = nums[i];
+            for (let j = 1; j <= maxRange; j++){
+                table[j] = true;
+            }
+        }
+    }
+
+    return table[table.length - 1]
 }
 
 
@@ -36,7 +48,20 @@ function stepper(nums) {
 // maxNonAdjacentSum([2, 7, 9, 3, 4])   // => 15, because 2 + 9 + 4
 // maxNonAdjacentSum([4,2,1,6])         // => 10, because 4 + 6 
 function maxNonAdjacentSum(nums) {
+    if (nums.length === 0) return 0
+    let table = new Array(nums.length).fill(0);
+    table[0] = nums[0];
 
+    for (let i = 1; i < table.length; i++){
+        let currSum = table[i - 2] === undefined ? 0 : table[i - 2];
+        // check which sum is greater, by adding this num to the currSum,
+        // or the currSum from the leftmost neighbor 
+        let withThisNum = currSum + table[i];
+        let prevSum = table[i - 1];
+        table[i] = Math.max(withThisNum, prevSum);
+    }
+
+    return table[table.length - 1];
 }
 
 
@@ -53,7 +78,20 @@ function maxNonAdjacentSum(nums) {
 // minChange([1, 5, 10, 25], 15)    // => 2, because 10 + 5 = 15
 // minChange([1, 5, 10, 25], 100)   // => 4, because 25 + 25 + 25 + 25 = 100
 function minChange(coins, amount) {
+    let table = new Array(amount + 1).fill(Infinity);
+    table[0] = 0;
 
+    coins.forEach(coin => {
+        for (let i = 0; i < table.length; i++){
+            for (let qty = 0; qty * coin <= i; qty++){
+                let remainder = i - qty * coin;
+                let attempt = table[remainder] + qty;
+                if (attempt < table[i]) table[i] = attempt
+            }
+        }
+    })
+
+    return table[table.length - 1];
 }
 
 
