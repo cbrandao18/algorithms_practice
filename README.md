@@ -15,3 +15,16 @@
 * Lucas Numbers - return the nth number of the Lucas Sequence incorportating memoization
 * Min Change - return the minimum number of coins needed to make the target amount
 * Coin Change from leetcode - return the number of combinations that make up an amount
+
+### Tabulation
+* Stepper - return if possible to move from the front all the way to the back end of the array. Each index in the array
+represents the number of steps allowed to take from that position.
+* Max Non Adjacent Sum - return the maximum sum of elements in the array we can get if we cannot take adjacent elements into the sum
+* Min Change - return the minimum number of coins needed to make the target amount
+
+### Sorting
+* Bubble Sort
+* Selection Sort
+* Insertion Sort
+* Merge Sort
+* Quick Sort
