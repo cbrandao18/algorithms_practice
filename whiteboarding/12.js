@@ -13,8 +13,8 @@ function findCommonAncestor(root, node1, node2){
 
 }
 
-        A 
-      /   \
-    B     C
-         /  \
-        D    E
+    //     A 
+    //   /   \
+    // B     C
+    //      /  \
+    //     D    E
